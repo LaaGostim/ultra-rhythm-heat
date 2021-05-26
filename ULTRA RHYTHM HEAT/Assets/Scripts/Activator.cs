@@ -99,7 +99,7 @@ public class Activator : MonoBehaviour
                     {
                         if (i.gameObject.transform.parent != null)
                         {
-                            i.color = new Color32(255, 109, 109, 100);
+                            i.color = new Color32(142, 112, 121, 255);
                         }
                     }
 
@@ -152,7 +152,7 @@ public class Activator : MonoBehaviour
                 {
                     if (i.gameObject.transform.parent != null)
                     {
-                        i.color = new Color32(255, 109, 109, 100);
+                        i.color = new Color32(142, 112, 121, 255);
                     }
                 }
             }

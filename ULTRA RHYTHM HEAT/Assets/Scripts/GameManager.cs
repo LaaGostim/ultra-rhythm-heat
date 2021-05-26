@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public Text finalScore;
     public Text notesHitText;
     public Text notesMissedText;
+    public Text newHighscoreText;
 
     public Text textSS;
     public Text textS;
@@ -64,13 +65,15 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         highscore = PlayerPrefs.GetInt("TestSceneHighScore", 0);
         //PlayerPrefs.DeleteKey("TestSceneHighScore");              DELETE HIGHSCORE
 
         gameHasEnded = false;
         notesMissed = 0;
         notesHit = 0;
-        Cursor.visible = false;
         isPaused = false;
         instance = this;
         Time.timeScale = gameSpeed;
@@ -103,7 +106,6 @@ public class GameManager : MonoBehaviour
             gameOverScoreText.text = "SCORE: " + currentScore;
             Time.timeScale = 0;
             deathScreen.SetActive(true);
-            Cursor.visible = true;
             theMusic.Stop();
             isDead = true;
         }
@@ -115,7 +117,6 @@ public class GameManager : MonoBehaviour
                 Debug.Log("PAUSED");
                 Time.timeScale = 0.0f;
                 pauseScreen.SetActive(true);
-                Cursor.visible = true;
                 theMusic.Pause();
                 isPaused = true;
             }
@@ -124,7 +125,6 @@ public class GameManager : MonoBehaviour
                 Debug.Log("UNPAUSED");
                 Time.timeScale = 1.0f;
                 pauseScreen.SetActive(false);
-                Cursor.visible = false;
                 theMusic.UnPause();
                 isPaused = false;
             }
@@ -211,6 +211,8 @@ public class GameManager : MonoBehaviour
             {
                 PlayerPrefs.SetInt("TestSceneHighScore", currentScore);
                 Debug.Log("NEW HIGHSCORE CONGRATS!!");
+
+                newHighscoreText.gameObject.SetActive(true);
             }
             Debug.Log("HIGHSCORE: " + highscore);
 
@@ -252,9 +254,10 @@ public class GameManager : MonoBehaviour
             Debug.Log("GAME ENDED");
             scoreScreen.SetActive(true);
             mainScreen.SetActive(false);
-            Cursor.visible = true;
             theMusic.Stop();
 
         }
     }
+
+    
 }
