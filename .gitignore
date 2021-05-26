@@ -22,6 +22,11 @@
 # Visual Studio cache directory
 .vs/
 
+# Other projects in same directory
+.backups/
+Guitar*Hero*Rhythm/
+RhythmHeat/
+
 # Gradle cache directory
 .gradle/
 
