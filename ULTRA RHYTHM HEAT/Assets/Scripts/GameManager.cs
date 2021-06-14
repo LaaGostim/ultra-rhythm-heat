@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     public int maxScoreForC;
 
     public int highscore;
+    public string rankLetter;
 
     public int currentScore;
     public int scorePerNote = 100;
@@ -62,7 +63,6 @@ public class GameManager : MonoBehaviour
     int multiplier = 1;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
 
         highscore = PlayerPrefs.GetInt("TestSceneHighScore", 0);
         //PlayerPrefs.DeleteKey("TestSceneHighScore");              DELETE HIGHSCORE
+
+        rankLetter = PlayerPrefs.GetString("TestSceneRank", "NA");
 
         gameHasEnded = false;
         notesMissed = 0;
@@ -213,6 +215,31 @@ public class GameManager : MonoBehaviour
                 Debug.Log("NEW HIGHSCORE CONGRATS!!");
 
                 newHighscoreText.gameObject.SetActive(true);
+
+                if (currentScore >= maxScoreForS && notesMissed <= 0)
+                {
+                    PlayerPrefs.SetString("TestSceneRank", "SS");
+                }
+                else if (currentScore >= maxScoreForS)
+                {
+                    PlayerPrefs.SetString("TestSceneRank", "S");
+                }
+                else if (currentScore >= maxScoreForA)
+                {
+                    PlayerPrefs.SetString("TestSceneRank", "A");
+                }
+                else if (currentScore >= maxScoreForB)
+                {
+                    PlayerPrefs.SetString("TestSceneRank", "B");
+                }
+                else if (currentScore >= maxScoreForC)
+                {
+                    PlayerPrefs.SetString("TestSceneRank", "C");
+                }
+                else
+                {
+                    PlayerPrefs.SetString("TestSceneRank", "D");
+                }
             }
             Debug.Log("HIGHSCORE: " + highscore);
 

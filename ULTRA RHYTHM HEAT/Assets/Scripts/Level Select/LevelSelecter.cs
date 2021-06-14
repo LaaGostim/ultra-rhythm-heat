@@ -20,7 +20,7 @@ public class LevelSelecter : MonoBehaviour
 
     private void Update()
     {
-        if(currentSong != 20)
+        if(currentSong != 16)
         {
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
@@ -41,7 +41,7 @@ public class LevelSelecter : MonoBehaviour
             }
             
         }
-        else if (currentSong == 20)
+        else if (currentSong == 16)
         {
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -79,9 +79,9 @@ public class LevelSelecter : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                theLevelsPanel.transform.localPosition = new Vector3(-3000, 0, 0);
+                theLevelsPanel.transform.localPosition = new Vector3(-16000, 0, 0);
                 GetComponentInChildren<AudioSource>().Stop();
-                currentSong = 3;
+                currentSong = 16;
                 GetComponentInChildren<AudioSource>().clip = songs[currentSong];
                 GetComponentInChildren<AudioSource>().Play();
             }

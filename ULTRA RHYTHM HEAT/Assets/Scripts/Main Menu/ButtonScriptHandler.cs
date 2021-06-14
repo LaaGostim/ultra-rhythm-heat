@@ -25,6 +25,14 @@ public class ButtonScriptHandler : MonoBehaviour
         Application.Quit();
     }
 
+    public void ResetProgress()
+    {
+        Debug.Log("RESET");
+        PlayerPrefs.DeleteAll();
+        StartCoroutine(LoadLevel(1));
+    }
+    
+
     public void BackButton()
     {
         Debug.Log("CHANGED SCENE");

@@ -11,9 +11,17 @@ public class SettingsMenuManager : MonoBehaviour
     public Dropdown resolutionDropdown;
     public AudioMixer musicMixer;
     public AudioMixer soundsMixer;
+    public Slider mVolumeSlider;
+    public Slider sVolumeSlider;
 
     void Start()
     {
+        musicMixer.SetFloat("volumeM", PlayerPrefs.GetFloat("MusicVolume", 1f));
+        mVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
+
+        soundsMixer.SetFloat("volumeS", PlayerPrefs.GetFloat("SoundVolume", 1f));
+        sVolumeSlider.value = PlayerPrefs.GetFloat("SoundVolume", 1f);
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
@@ -38,13 +46,20 @@ public class SettingsMenuManager : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
+    void Update()
+    {
+
+    }
+
     public void SetVolumeMusic(float volumeM)
     {
         musicMixer.SetFloat("volumeM", volumeM);
+        PlayerPrefs.SetFloat("MusicVolume", volumeM);
     }
     public void SetVolumeSounds(float volumeS)
     {
         soundsMixer.SetFloat("volumeS", volumeS);
+        PlayerPrefs.SetFloat("SoundVolume", volumeS);
     }
 
     public void SetResolution(int resolutionIndex)
